@@ -1,0 +1,35 @@
+sudo: required
+language: "android"
+
+android:
+  components:
+    - build-tools-23.0.1
+    - android-23
+    - extra-android-m2repository
+    - extra-google-m2repository
+
+env:
+  global:
+    - MALLOC_ARENA_MAX=2
+    - ADB_INSTALL_TIMEOUT=10
+
+before_install:
+  - "nvm install 7"
+  - "node --version"
+  - "npm config set spin false"
+
+install:
+  - "npm install"
+
+script:
+  - "npm run lint:summary || true"
+  - "npm test"
+  - "npm run build:android"
+
+deploy:
+  - provider: script
+    script: "./deploy.sh"
+    skip_cleanup: true
+    on:
+      tags: true
+      all_branches: true
