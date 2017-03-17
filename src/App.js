@@ -2,6 +2,8 @@ import React from 'react';
 import { Actions, Scene, Router } from 'react-native-router-flux';
 import { observer, Provider } from 'mobx-react';
 
+import MapScreen from './screens/Map';
+
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
