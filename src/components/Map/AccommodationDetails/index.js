@@ -16,7 +16,7 @@ class AccommodationDetails extends React.Component {
 
     return (
       <View style={[styles.container, {marginTop: 0}]}>
-        <TouchableOpacity style={{flex:1}} onPress={onPress} >
+        <TouchableOpacity style={{ flex:1 }} onPress={onPress} >
           <View style={styles.detailWrapper}>
             <Image source={{uri: accommodation.image}} style={styles.thumbnail} />
             <View style={styles.mainDetails}>

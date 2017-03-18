@@ -32,7 +32,7 @@ class SplashScreen extends Component {
     const { loaded, loggedIn } = this.props.appStore;
     
     console.log("SplashScreen : ", loaded, loggedIn);
-    if (loaded && loggedIn) Actions.home();
+    if (loaded && loggedIn) Actions.drawer();
     else if (loaded && !loggedIn) Actions.auth();
   }
 

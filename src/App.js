@@ -10,6 +10,9 @@ import Register from './components/Register';
 import PasswordReset from './components/PasswordReset';
 import SplashScreen from './components/SplashScreen';
 
+import NavigationDrawer from './components/NavigationDrawer';
+import DrawerButton from './components/NavigationDrawer/DrawerButton';
+
 import appStore from './stores/AppStore';
 import theme from './theme';
 
@@ -25,7 +28,12 @@ const scenes = Actions.create(
       <Scene key='passwordReset' component={PasswordReset}/>
     </Scene>
 
-    <Scene key='home' component={MapScreen} type='reset' />
+    <Scene key='drawer' component={NavigationDrawer} open={false} >
+      <Scene key='withNavbar' >
+        <Scene key='home' component={MapScreen} type='reset' renderLeftButton={() => <DrawerButton />}/>
+      </Scene>
+    </Scene>
+
   </Scene>
 );
 

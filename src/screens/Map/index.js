@@ -17,8 +17,9 @@ class MapScreenContainer extends Component {
     const onPress = () => {
       console.log('PRESSED FILTERS');
     }
-    return <Icon size={28} onPress={onPress} style={{marginTop: -6}} name="sliders"></Icon>;
+    return <Icon size={28} onPress={onPress} style={{marginTop: -5}} name="sliders"></Icon>;
   }
+
 
   constructor(props) {
     super(props);
