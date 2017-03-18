@@ -13,6 +13,8 @@ import SplashScreen from './components/SplashScreen';
 import appStore from './stores/AppStore';
 import theme from './theme';
 
+import './i18n';
+
 const scenes = Actions.create(
   <Scene key='root' theme={theme} >
     <Scene key='splashscreen' hideNavBar component={SplashScreen} type='reset' initial />

@@ -6,6 +6,8 @@ import {
   Image,
 } from 'react-native';
 
+import I18n from 'react-native-i18n';
+
 import styles from './styles';
 
 class AccommodationDetails extends React.Component {
@@ -25,8 +27,8 @@ class AccommodationDetails extends React.Component {
               >
                 {accommodation.name}
               </Text>
-              <Text>Full House</Text>
-              <Text>2 bedrooms</Text>
+              <Text>{I18n.t(accommodation.contract_type)} {I18n.t(accommodation.accommodation_type)}</Text>
+              <Text>2 {I18n.t('bedroom', 2)}</Text>
             </View>
             <View style={styles.leftDetails}>
               <Text>{accommodation.price} Rs</Text>

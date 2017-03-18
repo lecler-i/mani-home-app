@@ -57,6 +57,8 @@ const data = [
     image: 'http://www.tvdaijiworld.com/images6/kvn_140614_kirthi3.jpg',
     price: '15,000',
     name: 'Kirthi Samrat',
+    accommodation_type: 'appartment',
+    contract_type: 'shared',
   },
   {
     coordinate: {
@@ -66,6 +68,8 @@ const data = [
     image: 'http://3.bp.blogspot.com/-wFdFFIt2yCE/T9dc2RaYOqI/AAAAAAAAO_E/JzjHd_2ItUo/s1600/india-house-design-01.jpg',
     price: '8,000',
     name: 'Suraksha',
+    accommodation_type: 'house',
+    contract_type: 'full',
   }
 ];
 

@@ -48,6 +48,10 @@
 		E2CCD671B28F4BE9872BF84F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CDC3EA8A29E4E08918A42F2 /* Zocial.ttf */; };
 		663E99553F1843989BEFDF04 /* libA0RNLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3AF67BC3BB42FD8D089D5E /* libA0RNLock.a */; };
 		EED5E47FF36C4839B594E7BC /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79958FB98BEC48D292FB0C56 /* libAirMaps.a */; };
+		93B1932D905543598AFC9AE1 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B9650C905D4D31B13B315A /* libReact.a */; };
+		2C35CB901158484B8A8D4629 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A831B8E6814880B8CF0C64 /* libyoga.a */; };
+		D1A50EA7CEA849ACBA1E9A06 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D0F02319A1478C8017B2FE /* libcxxreact.a */; };
+		0D945C4C035E4569A137F938 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D882D48226AC44BF98C5D5EA /* libjschelpers.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +290,11 @@
 		8C3AF67BC3BB42FD8D089D5E /* libA0RNLock.a */ = {isa = PBXFileReference; name = "libA0RNLock.a"; path = "libA0RNLock.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		78DC595ABE484556B3A6F4BB /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		79958FB98BEC48D292FB0C56 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		05755FC22500488AA2F65F24 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		71B9650C905D4D31B13B315A /* libReact.a */ = {isa = PBXFileReference; name = "libReact.a"; path = "libReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		A2A831B8E6814880B8CF0C64 /* libyoga.a */ = {isa = PBXFileReference; name = "libyoga.a"; path = "libyoga.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		63D0F02319A1478C8017B2FE /* libcxxreact.a */ = {isa = PBXFileReference; name = "libcxxreact.a"; path = "libcxxreact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		D882D48226AC44BF98C5D5EA /* libjschelpers.a */ = {isa = PBXFileReference; name = "libjschelpers.a"; path = "libjschelpers.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +324,10 @@
 				B451106E5AF84F5F9F68019D /* libRNVectorIcons.a in Frameworks */,
 				663E99553F1843989BEFDF04 /* libA0RNLock.a in Frameworks */,
 				EED5E47FF36C4839B594E7BC /* libAirMaps.a in Frameworks */,
+				93B1932D905543598AFC9AE1 /* libReact.a in Frameworks */,
+				2C35CB901158484B8A8D4629 /* libyoga.a in Frameworks */,
+				D1A50EA7CEA849ACBA1E9A06 /* libcxxreact.a in Frameworks */,
+				0D945C4C035E4569A137F938 /* libjschelpers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +475,7 @@
 				9B0FE309866D44248894CEA7 /* RNVectorIcons.xcodeproj */,
 				1CC0AAC9FB88418A8A81E07E /* A0RNLock.xcodeproj */,
 				78DC595ABE484556B3A6F4BB /* AirMaps.xcodeproj */,
+				05755FC22500488AA2F65F24 /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -941,6 +955,10 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -957,6 +975,10 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ushiftapp.app/ushiftapp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
