@@ -23,7 +23,7 @@ const scenes = Actions.create(
       <Scene key='passwordReset' component={PasswordReset}/>
     </Scene>
 
-    <Scene key='home' component={Home} type='reset' />
+    <Scene key='home' component={MapScreen} type='reset' />
   </Scene>
 );
 
