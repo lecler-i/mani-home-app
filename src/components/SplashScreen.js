@@ -4,6 +4,8 @@ import { inject, observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
+import Auth0Lock from 'react-native-lock';
+
 import theme from '../theme';
 
 const styles = StyleSheet.create({
@@ -28,10 +30,10 @@ class SplashScreen extends Component {
 
   checkLoadingStatus = () => {
     const { loaded, loggedIn } = this.props.appStore;
-
-    //if (loaded && loggedIn) Actions.home();
-    //else if (loaded && !loggedIn) Actions.auth();
-    Actions.home();
+    
+    console.log("SplashScreen : ", loaded, loggedIn);
+    if (loaded && loggedIn) Actions.home();
+    else if (loaded && !loggedIn) Actions.auth();
   }
 
   render() {

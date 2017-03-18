@@ -13,10 +13,11 @@ class Home extends Component {
 
   render() {
     const { me } = this.props.appStore;
-    console.log(this.context);
+    console.log('Me', me);
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Mani-home</Text>
+        <Text style={styles.welcome}>Mani-home {me.email}</Text>
+
       </View>
     );
   }

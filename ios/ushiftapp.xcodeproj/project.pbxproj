@@ -46,6 +46,8 @@
 		9762F2B9A98A4CE09C364FDA /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6610E33F74D1465399F93B5F /* Octicons.ttf */; };
 		BF476329A9E44B1787EA53CF /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E01D4F5D2904453BAF4273CF /* SimpleLineIcons.ttf */; };
 		E2CCD671B28F4BE9872BF84F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CDC3EA8A29E4E08918A42F2 /* Zocial.ttf */; };
+		663E99553F1843989BEFDF04 /* libA0RNLock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3AF67BC3BB42FD8D089D5E /* libA0RNLock.a */; };
+		EED5E47FF36C4839B594E7BC /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79958FB98BEC48D292FB0C56 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +282,10 @@
 		6610E33F74D1465399F93B5F /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E01D4F5D2904453BAF4273CF /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7CDC3EA8A29E4E08918A42F2 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1CC0AAC9FB88418A8A81E07E /* A0RNLock.xcodeproj */ = {isa = PBXFileReference; name = "A0RNLock.xcodeproj"; path = "../node_modules/react-native-lock/ios/A0RNLock.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		8C3AF67BC3BB42FD8D089D5E /* libA0RNLock.a */ = {isa = PBXFileReference; name = "libA0RNLock.a"; path = "libA0RNLock.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		78DC595ABE484556B3A6F4BB /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		79958FB98BEC48D292FB0C56 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +313,8 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				B451106E5AF84F5F9F68019D /* libRNVectorIcons.a in Frameworks */,
+				663E99553F1843989BEFDF04 /* libA0RNLock.a in Frameworks */,
+				EED5E47FF36C4839B594E7BC /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +460,8 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				9B0FE309866D44248894CEA7 /* RNVectorIcons.xcodeproj */,
+				1CC0AAC9FB88418A8A81E07E /* A0RNLock.xcodeproj */,
+				78DC595ABE484556B3A6F4BB /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -929,6 +939,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -945,6 +957,8 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ushiftapp.app/ushiftapp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
