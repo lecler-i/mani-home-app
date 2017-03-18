@@ -8,7 +8,7 @@ import {
 import styles from './styles';
 
 const propTypes = {
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   fontSize: PropTypes.number,
   selected: PropTypes.bool,
 };

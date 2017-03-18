@@ -4,52 +4,70 @@ import { inject, observer } from 'mobx-react';
 import { Actions } from 'react-native-router-flux';
 import MapView from 'react-native-maps';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import PriceMarker from '../../components/Map/PriceMarker';
 
-import styles from './styles';
+import MapScreen from './MapScreen';
 
 @inject('appStore', 'theme') @observer
-class MapScreen extends Component {
-  static renderRightButton() {
-    return <Text>Right</Text>;
-  }
-  static onRight() {
-    console.log('PRESSED');
-  }
+class MapScreenContainer extends Component {
   
+  static renderRightButton() {
+    const onPress = () => {
+      console.log('PRESSED FILTERS');
+    }
+    return <Icon size={28} onPress={onPress} style={{marginTop: -6}} name="sliders"></Icon>;
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedIdx: 0,
+    };
+  }
+
+  onMarkerPress = (marker, idx) => {
+    console.log('Marker have been pressed', marker, idx);
+    this.setState({ selectedIdx : idx });
+  }
+
+  onDetailPress = () => {
+    console.log('Detail for house pressed', this.state.selectedIdx);
+  }
+
   render() {
-    const { me } = this.props.appStore;
     return (
-      <View style={styles.container}>
-        <View style={styles.mapContainer}>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: 13.352014,
-              longitude: 74.7862949,
-              latitudeDelta: 0.0222,
-              longitudeDelta: 0.0071,
-            }}
-          >
-          </MapView>
-        </View>
-      </View>
+      <MapScreen 
+        data={data}
+        onMarkerPress={this.onMarkerPress}
+        onDetailPress={this.onDetailPress}
+        selectedIdx={this.state.selectedIdx}
+      />
     );
   }
 }
 
+const data = [
+  {
+    coordinate: {
+      latitude: 13.352014,
+      longitude: 74.7862949,
+    },
+    image: 'http://www.tvdaijiworld.com/images6/kvn_140614_kirthi3.jpg',
+    price: '15,000',
+    name: 'Kirthi Samrat',
+  },
+  {
+    coordinate: {
+      latitude: 13.353314,
+      longitude: 74.7889949,
+    },
+    image: 'http://3.bp.blogspot.com/-wFdFFIt2yCE/T9dc2RaYOqI/AAAAAAAAO_E/JzjHd_2ItUo/s1600/india-house-design-01.jpg',
+    price: '8,000',
+    name: 'Suraksha',
+  }
+];
 
-// <MapView.Marker
-            // title={'TEST'}
-            // coordinate={{
-              // latitude: 13.352014,
-              // longitude: 74.7862949,
-            // }}
-            // onPress={(ev) => {
-              // console.log("Pressed me !", ev);
-            // }}
-          // >
-            // <PriceMarker amount={300} /> 
-          // </MapView.Marker>
 
-export default MapScreen;
+export default MapScreenContainer;

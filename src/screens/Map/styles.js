@@ -9,12 +9,10 @@ const styles = StyleSheet.create({
   mapContainer: {
     flex: 1,
   },
-  listContainer: {
-    height: 56,
-  },
   map: {
     ...StyleSheet.absoluteFillObject,
   },
 })
 
 export default styles;
+
