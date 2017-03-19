@@ -19,16 +19,12 @@ import theme from './theme';
 import './i18n';
 
 const scenes = Actions.create(
-  <Scene key='root' theme={theme} >
-    <Scene key='splashscreen' hideNavBar component={SplashScreen} type='reset' initial />
+  <Scene key='root' theme={theme} hideNavBar>
+    <Scene key='splashscreen' hideNavBar component={SplashScreen} type='reset' initial/>
 
-    <Scene key='auth' hideNavBar type='reset' >
-      <Scene key='login' component={Login}/>
-      <Scene key='register' component={Register}/>
-      <Scene key='passwordReset' component={PasswordReset}/>
-    </Scene>
+    <Scene key='auth' component={Login} type='reset' />
 
-    <Scene key='drawer' component={NavigationDrawer} open={false} >
+    <Scene key='drawer' component={NavigationDrawer} open={false} type='reset' >
       <Scene key='withNavbar' >
         <Scene key='home' component={MapScreen} type='reset' renderLeftButton={() => <DrawerButton />}/>
       </Scene>

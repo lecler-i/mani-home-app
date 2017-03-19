@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
 class SplashScreen extends Component {
   
   componentWillMount() {
+    if (this.props.fn)
+      this.props.fn();
     this.checkLoadingStatus();
   }
 

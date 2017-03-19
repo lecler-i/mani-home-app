@@ -15,6 +15,7 @@ class NavigationDrawer extends Component {
                 onOpen={()=> Actions.refresh({ key:state.key, open: true })}
                 onClose={()=> Actions.refresh({ key:state.key, open: false })}
                 type="displace"
+                style={drawerStyles}
                 content={<SideMenu />}
                 tapToClose={true}
                 openDrawerOffset={0.3}
@@ -26,6 +27,11 @@ class NavigationDrawer extends Component {
             </Drawer>
         );
     }
+}
+
+const drawerStyles = {
+  drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+  main: {paddingLeft: 3},
 }
 
 export default NavigationDrawer;

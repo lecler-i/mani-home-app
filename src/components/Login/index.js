@@ -16,17 +16,19 @@ class Login extends Component {
   constructor(...arg) {
     super(...arg);
     this.lock = new Auth0Lock({clientId: 'WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM', domain: 'lecler-i.auth0.com'});
-    this.props.appStore.authToken = null;
   }
 
   componentWillMount() {
+    this.props.appStore.authToken = null;
     this.lock.show({}, (err, profile, token) => {
       if (err) {
         console.log(err);
         return;
       }
       console.log('Logged in with Auth0!');
-      this.props.appStore.authToken = token.idToken;
+      Actions.splashscreen({ fn: () => {
+        this.props.appStore.authToken = token.idToken;  
+      }});
     });
   }
 

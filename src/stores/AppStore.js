@@ -22,15 +22,15 @@ class AppStore {
   set authToken(val) {
     this._authToken = val;
     console.log('Updated token', val);
-    if (!!val)
+    if (!!val) {
       AsyncStorage.setItem('@MySuperStore:authToken', this._authToken);
+      if (!this.fetchMe()) {
+        Actions.auth();
+      }
+    }
     else {
       AsyncStorage.removeItem('@MySuperStore:authToken');
-    }
-    if (this.fetchMe()) {
-      //Actions.home();
-    } else {
-      //Actions.auth();
+      this.me = null;
     }
   }
 
@@ -48,7 +48,8 @@ class AppStore {
       this.loaded = true;
       return true;
     } catch (e) {
-      console.error('ERROR', e);
+      this.authToken = null;
+      console.error('Auth0 error', e);
       return false;
     }
   }
