@@ -18,8 +18,8 @@ class NavigationDrawer extends Component {
                 style={drawerStyles}
                 content={<SideMenu />}
                 tapToClose={true}
-                openDrawerOffset={0.3}
-                panCloseMask={0.3}
+                openDrawerOffset={0.2}
+                captureGestures={true}
                 negotiatePan={true}
                 tweenHandler={Drawer.tweenPresets.parallax}
             >

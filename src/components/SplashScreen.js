@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-@inject('appStore') @observer
+@inject('appStore', 'authStore') @observer
 class SplashScreen extends Component {
   
   componentWillMount() {
@@ -31,15 +31,21 @@ class SplashScreen extends Component {
   }
 
   checkLoadingStatus = () => {
-    const { loaded, loggedIn } = this.props.appStore;
-    
-    console.log("SplashScreen : ", loaded, loggedIn);
-    if (loaded && loggedIn) Actions.drawer();
-    else if (loaded && !loggedIn) Actions.auth();
+    const { loaded, me } = this.props.appStore;
+    const { loading } = this.props.authStore;
+
+    console.log('App Loaded : ', loaded);
+    console.log('Auth Loading: ', loading);
+    console.log('Me: ', me);
+
+    if (loaded && !!me) Actions.drawer();
+    else if (loaded && !this.props.authStore.loading) Actions.auth();
   }
 
   render() {
-    console.log('I loaded', this.props.appStore.loaded);
+    const { loaded, me } = this.props.appStore;
+    const { loading } = this.props.authStore;
+  
     return (
       <View style={styles.container}>
         <Spinner color="#FFFFFF" />

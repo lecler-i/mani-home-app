@@ -55,14 +55,14 @@ class SideMenu extends React.Component {
 
 const menuEntries = [
   {
-    name: 'Map',
-    route: 'home',
-    icon: 'map-o'
-  },
-  {
     name: 'Listing',
     route: 'home',
     icon: 'list-ul'
+  },
+  {
+    name: 'Map',
+    route: 'map',
+    icon: 'map-o'
   },
   {
     name: 'Inbox',

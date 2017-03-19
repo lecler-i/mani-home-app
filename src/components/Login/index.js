@@ -11,7 +11,7 @@ import styles from './styles';
 import theme from '../../theme';
 import logo from'../../assets/img/logo.png';
 
-@inject('appStore') @observer
+@inject('appStore', 'authStore') @observer
 class Login extends Component {
   constructor(...arg) {
     super(...arg);
@@ -19,16 +19,16 @@ class Login extends Component {
   }
 
   componentWillMount() {
-    this.props.appStore.authToken = null;
+
+    this.props.authStore.authToken = null;
     this.lock.show({}, (err, profile, token) => {
       if (err) {
         console.log(err);
         return;
       }
       console.log('Logged in with Auth0!');
-      Actions.splashscreen({ fn: () => {
-        this.props.appStore.authToken = token.idToken;  
-      }});
+      this.props.authStore.login(token.idToken, profile);
+      Actions.splashscreen();
     });
   }
 
