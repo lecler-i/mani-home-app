@@ -1,7 +1,7 @@
 import React from 'react';
+import { AsyncStorage } from 'react-native';
 import { Actions, Scene, Router } from 'react-native-router-flux';
 import { observer, Provider } from 'mobx-react';
-
 import MapScreen from './screens/Map';
 
 import Home from './components/Home';
@@ -14,6 +14,8 @@ import NavigationDrawer from './components/NavigationDrawer';
 import DrawerButton from './components/NavigationDrawer/DrawerButton';
 
 import appStore from './stores/AppStore';
+import authStore from './stores/AuthStore';
+
 import theme from './theme';
 
 import './i18n';
@@ -24,7 +26,7 @@ const scenes = Actions.create(
 
     <Scene key='auth' component={Login} type='reset' />
 
-    <Scene key='drawer' component={NavigationDrawer} open={false} type='reset' >
+    <Scene key='drawer' component={NavigationDrawer} open={true} type='reset' >
       <Scene key='withNavbar' >
         <Scene key='home' component={MapScreen} type='reset' renderLeftButton={() => <DrawerButton />}/>
       </Scene>
@@ -35,6 +37,7 @@ const scenes = Actions.create(
 
 const stores = {
   appStore: appStore,
+  authStore: authStore,
 }
 
 @observer
@@ -56,5 +59,14 @@ class App extends React.Component {
     );
   }
 }
+
+AsyncStorage.getItem('@MySuperStore:authToken', async (err, val) => {
+  if (val) {
+    await authStore.login(val);
+    console.log('Loaded...');
+  }
+  appStore.loaded = true;
+});
+
 
 export default App
