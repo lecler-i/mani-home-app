@@ -20,7 +20,7 @@ before_install:
   - "nvm install 7"
   - "node --version"
   - "npm install -g yarn"
-  - "openssl aes-256-cbc -d -a -in secrets.enc -out secrets.tar -k thisisveryhard"
+  - "openssl aes-256-cbc -d -a -in secrets.tar.enc -out secrets.tar -k thisisveryhard"
   - "tar xvf secrets.tar"
 
 install:
