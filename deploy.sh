@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 REPO_NAME=`echo $TRAVIS_REPO_SLUG |  cut -d \/ -f 2`
-FILE_PATH="android/app/build/outputs/apk/app-release-unsigned.apk"
+FILE_PATH="android/app/build/outputs/apk/app-release.apk"
 
 # Code push
 if [ -n "${CODE_PUSH_TOKEN+set}" ]; then
@@ -18,6 +18,6 @@ if [ -n "${OWNCLOUD_CRED+set}" ]; then
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-${TRAVIS_TAG}.zip" --data-binary @"${FILE_PATH}"
   else
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-latest.zip" --data-binary @"${FILE_PATH}"
-    curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-${TRAVIS_COMMIT}.zip" --data-binary @"${FILE_PATH}"
+    curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-${TRAVIS_TAG}.zip" --data-binary @"${FILE_PATH}"
   fi
 fi

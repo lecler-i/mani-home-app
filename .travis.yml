@@ -1,6 +1,8 @@
 sudo: required
 language: "android"
 
+cache: yarn
+
 android:
   components:
     - platform-tools
