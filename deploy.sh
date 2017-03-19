@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+REPO_NAME=`echo $TRAVIS_REPO_SLUG |  cut -d \/ -f 2`
+FILE_PATH="android/app/build/outputs/apk/app-release.apk"
 
 # Code push
 if [ -n "${CODE_PUSH_TOKEN+set}" ]; then
@@ -9,6 +11,13 @@ fi
 
 # OwnCloud
 if [ -n "${OWNCLOUD_CRED+set}" ]; then
-  curl -X PUT -u "${OWNCLOUD_CRED}" "http://5.135.161.138:3003/remote.php/webdav/public/ushift-app/release-${TRAVIS_TAG}.apk" --data-binary @"android/app/build/outputs/apk/app-release.apk"
-  curl -X PUT -u "${OWNCLOUD_CRED}" "http://5.135.161.138:3003/remote.php/webdav/public/ushift-app/release-latest.apk" --data-binary @"android/app/build/outputs/apk/app-release.apk"
+  URL="http://c.thomas.sh/remote.php/webdav/public/${REPO_NAME}"
+  
+  if [ -n "${TRAVIS_TAG+set}" ]; then
+    curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-latest.zip" --data-binary @"${FILE_PATH}"
+    curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-${TRAVIS_TAG}.zip" --data-binary @"${FILE_PATH}"
+  else
+    curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-latest.zip" --data-binary @"${FILE_PATH}"
+    curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-${TRAVIS_COMMIT}.zip" --data-binary @"${FILE_PATH}"
+  fi
 fi
