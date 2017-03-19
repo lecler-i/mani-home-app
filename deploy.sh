@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 REPO_NAME=`echo $TRAVIS_REPO_SLUG |  cut -d \/ -f 2`
-FILE_PATH="android/app/build/outputs/apk/app-release.apk"
+FILE_PATH="android/app/build/outputs/apk/app-release-unsigned.apk"
 
 # Code push
 if [ -n "${CODE_PUSH_TOKEN+set}" ]; then
