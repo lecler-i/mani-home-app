@@ -6,11 +6,8 @@ import { observer, Provider } from 'mobx-react';
 import MapScreen from './screens/Map';
 import AccommodationListScreen from './screens/AccommodationListScreen';
 
-import Login from './components/Login';
-// import Home from './components/Home';
-// import Register from './components/Register';
-// import PasswordReset from './components/PasswordReset';
-import SplashScreen from './components/SplashScreen';
+import Login from './screens/Login';
+import SplashScreen from './screens/SplashScreen';
 
 import NavigationDrawer from './components/NavigationDrawer';
 import DrawerButton from './components/NavigationDrawer/DrawerButton';
