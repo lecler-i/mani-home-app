@@ -16,7 +16,7 @@ if [ ! -z "${OWNCLOUD_CRED}" ]; then
   if [ ! -z "${TRAVIS_TAG}" && "${TRAVIS_BRANCH}" == "master" ]; then
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-latest.apk" --data-binary @"${FILE_PATH}"
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-${TRAVIS_TAG}.apk" --data-binary @"${FILE_PATH}"
-  elif [ "${TRAVIS_BRANCH}" == "develop" ]
+  elif [ "${TRAVIS_BRANCH}" == "develop" ]; then
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-latest.apk" --data-binary @"${FILE_PATH}"
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-${TRAVIS_COMMIT}.apk" --data-binary @"${FILE_PATH}"
   fi
