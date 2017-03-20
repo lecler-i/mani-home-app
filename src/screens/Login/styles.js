@@ -1,16 +1,11 @@
 import { StyleSheet } from 'react-native';
-import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.brandPrimary,
     padding: 8,
-  },
-  header: {
-    marginBottom: 16,
   },
   buttonContainer: {
     margin: 16,
@@ -21,8 +16,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     borderColor: '#ffffff',
   },
-  backText: {
+  passwordResetText: {
     marginTop: 8,
+  },
+  logo: {
+    marginBottom: 46,
   },
 })
 
