@@ -3108,9 +3108,9 @@ react-native-i18n@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-1.0.0.tgz#0c407d9ebb846aae1aa5e05de6503008553f02fd"
 
-react-native-item-checkbox@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/react-native-item-checkbox/-/react-native-item-checkbox-1.0.6.tgz#6364b914cac816e2aeb595c839c0476daad5ef65"
+react-native-item-checkbox@lecler-i/react-native-item-checkbox:
+  version "1.0.4"
+  resolved "https://codeload.github.com/lecler-i/react-native-item-checkbox/tar.gz/694fd25db12ec744cf3157985e53241d8d7a034a"
   dependencies:
     react-native-vector-icons "^2.0.3"
 

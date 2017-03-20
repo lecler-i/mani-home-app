@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 
 import FiltersScreen from './FiltersScreen';
 
-@inject('appStore') @observer
+@inject('appStore', 'filtersStore') @observer
 class FiltersScreenContainer extends Component {
 
   constructor(props) {
