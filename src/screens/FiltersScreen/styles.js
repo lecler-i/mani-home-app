@@ -12,15 +12,18 @@ const styles = StyleSheet.create({
     borderBottomColor: 'lightgrey',
   },
   categoryTitle: {
-
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
 
   filterContainer: {
     flexDirection: 'row',
-    marginVertical: 8,
+    height: 66,
   },
   filterLabelContainer: {
     flexDirection: 'column',
+    alignSelf: 'center',
+    marginRight: 46,
     flex: 1,   
   },
   filterLabelTitle: {
@@ -30,6 +33,14 @@ const styles = StyleSheet.create({
   },
   filterElementContainer: {
     alignSelf: 'center',
+  },
+  accommodationTypeText: {
+    color: 'lightgrey',
+    fontSize: 30,
+  },
+  accommodationTypeSelectedText: {
+    color: '#FF5A5F',
+    fontWeight: 'bold',
   },
 
 

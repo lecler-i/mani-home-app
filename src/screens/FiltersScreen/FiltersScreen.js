@@ -9,61 +9,64 @@ import I18n from 'react-native-i18n';
 import styles from './styles';
 
 
-const CheckBoxFilter = observer(({ title, description, value, onChange}) => {
-  console.log(`${title} new val : `, value);
-  return (
+const CustomFilter = observer(({ title, description, component, value, onTouch = false }) => {
+  const element = (
     <View style={styles.filterContainer}>
       <View style={styles.filterLabelContainer}>
         <Text style={styles.filterLabelTitle}>{title}</Text>
-        <Text>{description}</Text>
+        <Text style={styles.filterLabelDescription}>{description}</Text>
       </View>
       <View style={styles.filterElementContainer}>
-        <ItemCheckbox
-          checked={value}
-          onCheck={() => onChange(true)}
-          onUncheck={() => onChange(false)}
-          color="#FF5A5F"
-        />
+        {component}
       </View>
     </View>
   );
+
+  if (onTouch) {
+    return <TouchableOpacity onPress={onTouch}>{element}</TouchableOpacity>;
+  }
+  return element;
 });
 
+const CheckBoxFilter = observer(props =>
+  <CustomFilter
+    {...props}
+    onTouch={() => props.onChange(!props.value)}
+    component={
+      <ItemCheckbox
+        onCheck={() => props.onChange(true)}
+        onUncheck={() => props.onChange(false)}
+        checked={props.value}
+        color="#FF5A5F"
+        size={28}
+        icon={props.icon}
+      />
+    }
+  />);
+
 const FiltersScreen = inject('filtersStore')(observer(({ filtersStore }) => {
-  console.log('Contract type: ', filtersStore.contractType);
+  const { contractTypes, accommodationTypes, availableNow } = filtersStore;
+  
   return (
     <ScrollView style={[styles.container]}>
-
       <View style={styles.categoryContainer}>
-        <Text style={styles.categoryTitle}>
-          Home Type
-        </Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <View style={{ flex:1 }}>
-            <Text style={{ color: 'lightgrey', alignSelf: 'flex-end', fontSize: 30 }}>HOUSE</Text>
-          </View>
-          <Text style={{ fontSize: 22 }}> | </Text>
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: '#FF5A5F', fontSize: 30 }}>FLAT</Text>
-          </View>
-        </View>
+        <CheckBoxFilter
+          title="Available now"
+          description="Available today or in the next 7-days"
+          value={availableNow}
+          onChange={val => (filtersStore.availableNow = val)}
+        />
       </View>
 
-
-      <View style={styles.categoryContainer}>
-        <Text style={styles.categoryTitle}>
-          Price
-        </Text>
-        <View style={{ flexDirection: 'row', alignSelf: 'center', height: 46 }}>
-          <Slider
-            values={[3,7]}
-            sliderLength={200}
-            containerStyle={{ height: 46 }}
-            markerStyle={{ height: 100, width: 100, borderRadius: 15, backgroundColor:'#E8E8E8', borderWidth: 0.5, borderColor: 'grey' }}
-          />
-        </View>
-      </View>
-
+      <View style={[styles.categoryContainer, { flexDirection: 'row' }]}>
+          <TouchableOpacity style={{ flex:1 }} onPress={() => filtersStore.toggleAccommodationType('house')}>
+            <Text style={[styles.accommodationTypeText, (accommodationTypes.indexOf('house') >= 0 && styles.accommodationTypeSelectedText), {alignSelf: 'flex-end'}]}>HOUSE</Text>
+          </TouchableOpacity>
+          <Text style={{ fontSize: 22, width: 89, textAlign: 'center', alignSelf: 'center'}}> {(accommodationTypes.length % 2) ? 'or' : 'only'} </Text>
+          <TouchableOpacity style={{ flex:1 }} onPress={() => filtersStore.toggleAccommodationType('flat')}>
+              <Text style={[styles.accommodationTypeText, (accommodationTypes.indexOf('flat') >= 0 && styles.accommodationTypeSelectedText)]}>FLAT</Text>
+          </TouchableOpacity>
+       </View>
 
       <View style={styles.categoryContainer}>
         <Text style={styles.categoryTitle}>
@@ -72,14 +75,14 @@ const FiltersScreen = inject('filtersStore')(observer(({ filtersStore }) => {
         <CheckBoxFilter
           title="Entire place"
           description="Have a place for yourself."
-          value={(filtersStore.contractType === 'full')}
-          onChange={val => (filtersStore.contractType = (val ? 'full' : 'None'))}
+          value={(contractTypes.indexOf('full') >= 0)}
+          onChange={() => (filtersStore.toggleContractType('full'))}
         />
         <CheckBoxFilter
           title="Shared place"
-          description="Get a room with other peoples."
-          value={filtersStore.contractType === 'shared'}
-          onChange={val => (filtersStore.contractType = (val ? 'shared' : 'None'))}
+          description="Get a private room in a shared-place."
+          value={(contractTypes.indexOf('shared') >= 0)}
+          onChange={() => filtersStore.toggleContractType('shared')}
         />
       </View>
     </ScrollView>
