@@ -10,7 +10,7 @@ import PriceMarker from '../../components/Map/PriceMarker';
 
 import MapScreen from './MapScreen';
 
-@inject('appStore', 'theme') @observer
+@inject('appStore') @observer
 class MapScreenContainer extends Component {
   
   static renderRightButton() {

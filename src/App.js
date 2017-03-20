@@ -18,8 +18,6 @@ import DrawerButton from './components/NavigationDrawer/DrawerButton';
 import appStore from './stores/AppStore';
 import authStore from './stores/AuthStore';
 
-import theme from './theme';
-
 import './i18n';
 
 // define this based on the styles/dimensions you use
@@ -39,7 +37,7 @@ const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) 
 };
 
 const scenes = Actions.create(
-  <Scene key='root' theme={theme} hideNavBar>
+  <Scene key='root' hideNavBar>
     <Scene key='splashscreen' hideNavBar component={SplashScreen} type='reset' initial/>
 
     <Scene key='auth' component={Login} type='reset' />
@@ -61,18 +59,10 @@ const stores = {
 
 @observer
 class App extends React.Component {
-  
-  static childContextTypes = {
-    theme: React.PropTypes.object,
-  };
-
-  getChildContext() {
-    return { theme };
-  }
 
   render() {
     return (
-      <Provider {...stores} theme={theme}>
+      <Provider {...stores}>
         <Router scenes={scenes} getSceneStyle={getSceneStyle}/>
       </Provider>
     );

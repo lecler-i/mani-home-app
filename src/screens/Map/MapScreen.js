@@ -9,7 +9,7 @@ import AccommodationDetails from '../../components/Map/AccommodationDetails';
 
 import styles from './styles';
 
-@inject('appStore', 'theme') @observer
+@inject('appStore') @observer
 class MapScreen extends Component {
   
   render() {

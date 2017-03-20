@@ -8,7 +8,6 @@ import Auth0Lock from 'react-native-lock';
 
 
 import styles from './styles';
-import theme from '../../theme';
 import logo from'../../assets/img/logo.png';
 
 @inject('appStore', 'authStore') @observer

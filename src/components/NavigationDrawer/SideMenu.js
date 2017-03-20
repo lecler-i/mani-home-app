@@ -13,7 +13,7 @@ import I18n from 'react-native-i18n';
 
 import styles from './styles';
 
-@inject('appStore', 'theme') @observer
+@inject('appStore') @observer
 class SideMenu extends React.Component {
 
   _renderRow = (item) => 

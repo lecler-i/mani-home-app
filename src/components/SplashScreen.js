@@ -5,18 +5,16 @@ import { Actions } from 'react-native-router-flux';
 
 import Auth0Lock from 'react-native-lock';
 
-import theme from '../theme';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.brandPrimary,
+    backgroundColor: 'red',
   },
 });
 
-@inject('appStore', 'authStore', 'theme') @observer
+@inject('appStore', 'authStore') @observer
 class SplashScreen extends Component {
   
   componentWillMount() {

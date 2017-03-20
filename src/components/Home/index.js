@@ -8,7 +8,7 @@ import { Spinner } from 'native-base';
 
 import styles from './styles';
 
-@inject('appStore', 'theme') @observer
+@inject('appStore') @observer
 class Home extends Component {
 
   render() {
