@@ -13,10 +13,10 @@ fi
 if [ ! -z "${OWNCLOUD_CRED}" ]; then
   URL="http://c.thomas.sh/remote.php/webdav/public/${REPO_NAME}"
   
-  if [ ! -z "${TRAVIS_TAG}" ]; then
+  if [ ! -z "${TRAVIS_TAG}" && "${TRAVIS_BRANCH}" == "master" ]; then
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-latest.apk" --data-binary @"${FILE_PATH}"
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/release-${TRAVIS_TAG}.apk" --data-binary @"${FILE_PATH}"
-  else
+  elif [ "${TRAVIS_BRANCH}" == "develop" ]
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-latest.apk" --data-binary @"${FILE_PATH}"
     curl -X PUT -u "${OWNCLOUD_CRED}" "${URL}/beta-${TRAVIS_COMMIT}.apk" --data-binary @"${FILE_PATH}"
   fi
