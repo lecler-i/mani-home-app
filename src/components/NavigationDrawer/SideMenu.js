@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  ListView,
 } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { Actions } from 'react-native-router-flux';
@@ -16,10 +15,13 @@ import styles from './styles';
 @inject('appStore') @observer
 class SideMenu extends React.Component {
 
-  _renderRow = (item) => 
+  _renderRow = (item, id) => 
     <TouchableOpacity
-        key={`${item.name}-${item.route}`}
-        onPress={() => Actions[item.route]()}
+      key={id}
+      onPress={() => {
+        this.props.appStore.drawerOpen = false;
+        Actions[item.route]();
+      }}
     >
       <View style={styles.menuItemContainer}>
         <Icon name={item.icon} style={styles.menuItemIcon}/>
@@ -28,13 +30,10 @@ class SideMenu extends React.Component {
         </Text>
       </View>
     </TouchableOpacity>
-  ;
 
   render() {
     const { me } = this.props.appStore;
     
-    console.log('Test : ', Actions.home);
-
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
