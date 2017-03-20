@@ -44,7 +44,7 @@ const scenes = Actions.create(
 
     <Scene key='auth' component={Login} type='reset' />
 
-    <Scene key='drawer' component={NavigationDrawer} open={true} type='reset' >
+    <Scene key='drawer' component={NavigationDrawer} open={false} type='reset' >
       <Scene key='withNavbar' >
         <Scene key='home' component={AccommodationListScreen} type='reset' renderLeftButton={() => <DrawerButton />}/>
         <Scene key='map' component={MapScreen} />

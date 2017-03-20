@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { Spinner } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import Auth0Lock from 'react-native-lock';
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-@inject('appStore', 'authStore') @observer
+@inject('appStore', 'authStore', 'theme') @observer
 class SplashScreen extends Component {
   
   componentWillMount() {
@@ -48,7 +47,7 @@ class SplashScreen extends Component {
   
     return (
       <View style={styles.container}>
-        <Spinner color="#FFFFFF" />
+        <ActivityIndicator size={'large'} color="white" />
       </View>
     );
   }
