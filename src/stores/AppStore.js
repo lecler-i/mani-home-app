@@ -4,6 +4,7 @@ import authStore from './AuthStore';
 
 class AppStore {
   @observable loaded = false;
+  @observable drawerOpen = false;
 
   @computed
   get me() {
