@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import { Actions } from 'react-native-router-flux';
-import MapView from 'react-native-maps';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import PriceMarker from '../../components/Map/PriceMarker';
-
+import RightButtonFilters from '../../components/NavBar/RightButtonFilters';
 import MapScreen from './MapScreen';
 
 @inject('appStore') @observer
 class MapScreenContainer extends Component {
-  
-  static renderRightButton() {
-    const onPress = () => {
-      console.log('PRESSED FILTERS');
-    }
-    return <Icon size={28} onPress={onPress} style={{marginTop: -5}} name="sliders"></Icon>;
-  }
 
+  static renderRightButton() {
+    return <RightButtonFilters />;
+  }
 
   constructor(props) {
     super(props);
@@ -30,7 +21,7 @@ class MapScreenContainer extends Component {
 
   onMarkerPress = (marker, idx) => {
     console.log('Marker have been pressed', marker, idx);
-    this.setState({ selectedIdx : idx });
+    this.setState({ selectedIdx: idx });
   }
 
   onDetailPress = () => {
@@ -39,7 +30,7 @@ class MapScreenContainer extends Component {
 
   render() {
     return (
-      <MapScreen 
+      <MapScreen
         data={data}
         onMarkerPress={this.onMarkerPress}
         onDetailPress={this.onDetailPress}
@@ -71,7 +62,7 @@ const data = [
     name: 'Suraksha',
     accommodation_type: 'house',
     contract_type: 'full',
-  }
+  },
 ];
 
 

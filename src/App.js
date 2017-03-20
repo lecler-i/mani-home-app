@@ -5,19 +5,19 @@ import { observer, Provider } from 'mobx-react';
 
 import MapScreen from './screens/Map';
 import AccommodationListScreen from './screens/AccommodationListScreen';
-
 import Login from './screens/Login';
 import SplashScreen from './screens/SplashScreen';
+import FiltersScreen from './screens/FiltersScreen';
 
 import NavigationDrawer from './components/NavigationDrawer';
 import DrawerButton from './components/NavigationDrawer/DrawerButton';
 
 import appStore from './stores/AppStore';
 import authStore from './stores/AuthStore';
+import filtersStore from './stores/FiltersStore';
 
 import './i18n';
 
-// define this based on the styles/dimensions you use
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
   const style = {
     flex: 1,
@@ -28,39 +28,38 @@ const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) 
   };
   if (computedProps.isActive) {
     style.marginTop = computedProps.hideNavBar ? 0 : 55;
-    // style.marginBottom = computedProps.hideTabBar ? 0 : 50;
   }
   return style;
 };
 
-const scenes = Actions.create(
-  <Scene key='root' hideNavBar>
-    <Scene key='splashscreen' hideNavBar component={SplashScreen} type='reset' initial/>
+const scenes = Actions.create((
+  <Scene key="root">
+    <Scene key="splashscreen" hideNavBar component={SplashScreen} type="reset" initial />
 
-    <Scene key='auth' component={Login} type='reset' />
+    <Scene key="auth" component={Login} hideNavBar type="reset" />
+    <Scene key="map" component={MapScreen} />
+    <Scene key="filters" component={FiltersScreen} />
 
-    <Scene key='drawer' component={NavigationDrawer} open={false} type='reset' >
-      <Scene key='withNavbar' >
-        <Scene key='home' component={AccommodationListScreen} type='reset' renderLeftButton={() => <DrawerButton />}/>
-        <Scene key='map' component={MapScreen} />
+    <Scene key="drawer" component={NavigationDrawer} open={false} type="reset" >
+      <Scene key="withNavbar" >
+        <Scene key="home" component={AccommodationListScreen} type="reset" renderLeftButton={() => <DrawerButton />} />
       </Scene>
     </Scene>
-
   </Scene>
-);
+));
 
 const stores = {
-  appStore: appStore,
-  authStore: authStore,
-}
+  appStore,
+  authStore,
+  filtersStore,
+};
 
 @observer
 class App extends React.Component {
-
   render() {
     return (
       <Provider {...stores}>
-        <Router scenes={scenes} getSceneStyle={getSceneStyle}/>
+        <Router scenes={scenes} getSceneStyle={getSceneStyle} />
       </Provider>
     );
   }
@@ -75,4 +74,4 @@ AsyncStorage.getItem('@MySuperStore:authToken', async (err, val) => {
 });
 
 
-export default App
+export default App;
