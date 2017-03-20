@@ -27,7 +27,7 @@ const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) 
     shadowRadius: null,
   };
   if (computedProps.isActive) {
-    style.marginTop = computedProps.hideNavBar ? 0 : 56;
+    style.marginTop = computedProps.hideNavBar ? 0 : 55;
     // style.marginBottom = computedProps.hideTabBar ? 0 : 50;
   }
   return style;
