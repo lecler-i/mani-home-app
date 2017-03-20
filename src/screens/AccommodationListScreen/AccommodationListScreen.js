@@ -14,14 +14,14 @@ import styles from './styles';
 class AccommodationListScreen extends Component {
   
   render() {
-    const { data, onMarkerPress, onDetailPress, selectedIdx } = this.props;
+    const { data, onAccommodationPress, selectedIdx } = this.props;
 
     console.log('Selected Idx:', selectedIdx);
 
     const accommodations = data.map((e, id) => {
       console.log('Current one', id);
       return (
-        <TouchableOpacity key={id}>
+        <TouchableOpacity key={id} onPress={() => onAccommodationPress(e, id)}>
           <View key={id} style={[styles.accommodationContainer, ]}>
             <Image source={{ uri: e.image}} style={styles.thumbnail} />
             <View style={styles.textContainer}>
@@ -41,7 +41,7 @@ class AccommodationListScreen extends Component {
     });
 
     return (
-      <ScrollView style={[styles.container]}>
+      <ScrollView style={[styles.container]} keyboardShouldPersistTaps='always'>
         {accommodations}
      </ScrollView>
     );

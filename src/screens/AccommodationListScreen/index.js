@@ -36,7 +36,7 @@ class AccommodationListScreenContainer extends Component {
     return (
       <AccommodationListScreen 
         data={data}
-        onAccomodationPress={this.onAccomodationPress}
+        onAccommodationPress={this.onAccommodationPress}
         selectedIdx={this.state.selectedIdx}
       />
     );
