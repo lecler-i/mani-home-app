@@ -10,42 +10,34 @@ import AccommodationDetails from '../../components/Map/AccommodationDetails';
 
 import styles from './styles';
 
-@inject('appStore') @observer
-class AccommodationListScreen extends Component {
-  
-  render() {
-    const { data, onAccommodationPress, selectedIdx } = this.props;
+const AccomodationItem = ({ accommodation, onPress }) => 
+  <TouchableOpacity onPress={onPress} >
+    <View style={styles.accommodationContainer}>
+      <Image source={{ uri: accommodation.image}} style={styles.thumbnail} />
+      <View style={styles.textContainer}>
+        <Text style={styles.priceText}>
+          {accommodation.price} INR/Month
+        </Text>
+        <Text>
+          {I18n.t(accommodation.contract_type)} {I18n.t(accommodation.type)}
+        </Text>
+      </View>
+      <Text>
+        <Text>2 {I18n.t('bedroom', 2)}</Text>
+      </Text>
+    </View>
+  </TouchableOpacity>
 
-    console.log('Selected Idx:', selectedIdx);
 
-    const accommodations = data.map((e, id) => {
-      console.log('Current one', id);
-      return (
-        <TouchableOpacity key={id} onPress={() => onAccommodationPress(e, id)}>
-          <View key={id} style={[styles.accommodationContainer, ]}>
-            <Image source={{ uri: e.image}} style={styles.thumbnail} />
-            <View style={styles.textContainer}>
-              <Text style={styles.priceText}>
-                {e.price} INR/Month
-              </Text>
-              <Text>
-                {I18n.t(e.contract_type)} {I18n.t(e.accommodation_type)}
-              </Text>
-            </View>
-            <Text>
-              <Text>2 {I18n.t('bedroom', 2)}</Text>
-            </Text>
-          </View>
-        </TouchableOpacity>
-      );
-    });
+const AccommodationListScreen = inject('appStore')(observer(({ data, onAccommodationPress }) => {
 
-    return (
-      <ScrollView style={[styles.container]} keyboardShouldPersistTaps='always'>
-        {accommodations}
-     </ScrollView>
-    );
-  }
-}
+  const accommodations = data.map((e, idx) => <AccomodationItem key={idx} accommodation={e} onPress={() => onAccommodationPress(e, idx)} />);
+
+  return (
+    <ScrollView style={[styles.container]} keyboardShouldPersistTaps='always'>
+      {accommodations}
+   </ScrollView>
+  );
+}));
 
 export default AccommodationListScreen;

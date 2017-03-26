@@ -11,16 +11,8 @@ class AccommodationListScreenContainer extends React.Component {
     return <RightButtonFilters />;
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedIdx: 0,
-    };
-  }
-
-  onAccommodationPress = (marker, idx) => {
-    console.log('Marker have been pressed', marker, idx);
-    this.setState({ selectedIdx: idx });
+  onAccommodationPress = (accommodation, idx) => {
+    console.log('Accommodation have been pressed', accommodation, idx);
   }
 
   render() {
@@ -28,7 +20,6 @@ class AccommodationListScreenContainer extends React.Component {
       <AccommodationListScreen 
         data={data}
         onAccommodationPress={this.onAccommodationPress}
-        selectedIdx={this.state.selectedIdx}
       />
     );
   }
@@ -43,7 +34,7 @@ const data = [
     image: 'http://www.tvdaijiworld.com/images6/kvn_140614_kirthi3.jpg',
     price: '15,000',
     name: 'Kirthi Samrat',
-    accommodation_type: 'appartment',
+    type: 'appartment',
     contract_type: 'shared',
   },
   {
@@ -54,7 +45,7 @@ const data = [
     image: 'http://3.bp.blogspot.com/-wFdFFIt2yCE/T9dc2RaYOqI/AAAAAAAAO_E/JzjHd_2ItUo/s1600/india-house-design-01.jpg',
     price: '8,000',
     name: 'Suraksha',
-    accommodation_type: 'house',
+    type: 'house',
     contract_type: 'full',
   }
 ];

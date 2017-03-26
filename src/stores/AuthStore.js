@@ -24,7 +24,7 @@ class AuthStore {
     if (!val) {
       AsyncStorage.removeItem('@MySuperStore:authToken');
       this.me = null;
-      Actions.auth();
+      return Actions.auth();
     } else {
       AsyncStorage.setItem('@MySuperStore:authToken', val);
     }
@@ -48,12 +48,12 @@ class AuthStore {
     }
     try {
       this.loading = true;
-      console.log("Requesting profile for token...");
-      const profile = await this.auth0
+      //console.log("Requesting profile for token...");
+      this.me = await this.auth0
         .authentication('WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM')
         .tokenInfo(authToken);
       this.me = profile;
-      console.log("Got profile : ", profile);
+      console.log('Got profile : ', profile);
       this.authToken = authToken;
       this.loading = false;
       return true;
