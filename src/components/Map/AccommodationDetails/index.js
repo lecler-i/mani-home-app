@@ -27,7 +27,7 @@ class AccommodationDetails extends React.Component {
               >
                 {accommodation.name}
               </Text>
-              <Text>{I18n.t(accommodation.contract_type)} {I18n.t(accommodation.accommodation_type)}</Text>
+              <Text>{I18n.t(accommodation.contract_type)} {I18n.t(accommodation.type)}</Text>
               <Text>2 {I18n.t('bedroom', 2)}</Text>
             </View>
             <View style={styles.leftDetails}>

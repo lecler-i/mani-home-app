@@ -19,13 +19,13 @@ class MapScreenContainer extends Component {
     };
   }
 
-  onMarkerPress = (marker, idx) => {
-    console.log('Marker have been pressed', marker, idx);
+  onMarkerPress = (accommodation, idx) => {
     this.setState({ selectedIdx: idx });
   }
 
   onDetailPress = () => {
-    console.log('Detail for house pressed', this.state.selectedIdx);
+    console.log('Detail for house pressed', data[this.state.selectedIdx]);
+    Actions.accommodation_details({ accommodation: data[this.state.selectedIdx] });
   }
 
   render() {
@@ -49,7 +49,7 @@ const data = [
     image: 'http://www.tvdaijiworld.com/images6/kvn_140614_kirthi3.jpg',
     price: '15,000',
     name: 'Kirthi Samrat',
-    accommodation_type: 'appartment',
+    type: 'appartment',
     contract_type: 'shared',
   },
   {
@@ -60,7 +60,7 @@ const data = [
     image: 'http://3.bp.blogspot.com/-wFdFFIt2yCE/T9dc2RaYOqI/AAAAAAAAO_E/JzjHd_2ItUo/s1600/india-house-design-01.jpg',
     price: '8,000',
     name: 'Suraksha',
-    accommodation_type: 'house',
+    type: 'house',
     contract_type: 'full',
   },
 ];

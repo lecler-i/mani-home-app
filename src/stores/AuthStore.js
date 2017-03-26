@@ -48,12 +48,11 @@ class AuthStore {
     }
     try {
       this.loading = true;
-      //console.log("Requesting profile for token...");
+      console.log("Requesting profile for token...");
       this.me = await this.auth0
         .authentication('WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM')
         .tokenInfo(authToken);
-      this.me = profile;
-      console.log('Got profile : ', profile);
+      console.log('Got profile : ', this.me);
       this.authToken = authToken;
       this.loading = false;
       return true;

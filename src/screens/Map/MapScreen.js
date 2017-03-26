@@ -50,7 +50,7 @@ class MapScreen extends Component {
             {markers}
           </MapView>
         </View>
-        <AccommodationDetails accommodation={data[selectedIdx]} />
+        <AccommodationDetails accommodation={data[selectedIdx]} onPress={onDetailPress}/>
      </View>
     );
   }
