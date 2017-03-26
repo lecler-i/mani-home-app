@@ -46,9 +46,19 @@ const AccommodationDetailsScreen = inject('appStore')(observer(({ accommodation,
             
             <View style={{ margin: 16 }} />
 
-            <View style={{ alignItems: 'center', borderTopWidth: 1, borderColor: 'lightgrey', paddingTop: 16 }}>
+            <View style={{ alignItems: 'center', borderTopWidth: 1, borderBottomWidth: 1, borderColor: 'lightgrey', paddingVertical: 16 }}>
               <Text style={{ fontSize: 18 }}><Text style={{ fontWeight: 'bold', fontSize: 28 }}>{accommodation.price}</Text> INR</Text>
               <Text style={{ marginTop: -8 }}>per months</Text>
+            </View>
+
+            <View style={{ margin: 8 }} />
+
+
+            <View>
+              <Text>1 private room in 3bhk</Text>
+              <Text>3bhk house</Text>
+              <Text>Non furnished</Text>
+
             </View>
           </View>
         </ParallaxScrollView>
