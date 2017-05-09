@@ -9,7 +9,12 @@ I18n.translations = {
     'shared': 'Shared',
     'full': 'Full',
     'bedroom' : 'bedrooms',
+
+    'entire-place': 'Entire place',
+    'private-room': 'Private room',
+    'shared-room': 'Shared room',
   },
+
   fr: {
   },
 };

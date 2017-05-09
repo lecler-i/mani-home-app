@@ -10,6 +10,7 @@ import AccommodationListScreen from './screens/AccommodationListScreen';
 import Login from './screens/Login';
 import SplashScreen from './screens/SplashScreen';
 import FiltersScreen from './screens/FiltersScreen';
+import CreateAccommdationScreen from './screens/CreateAccommodationScreen';
 
 import NavigationDrawer from './components/NavigationDrawer';
 
@@ -39,6 +40,7 @@ const scenes = Actions.create((
     <Scene key="auth" component={Login} hideNavBar type="reset" />
     <Scene key="map" component={MapScreen} />
     <Scene key="filters" component={FiltersScreen} />
+    <Scene key="create-accommodation" component={CreateAccommdationScreen} />
 
     <Scene key="drawer" component={NavigationDrawer} open={false} type="reset" >
       <Scene key="withNavbar" >
@@ -59,13 +61,22 @@ class App extends React.Component {
   }
 }
 
-AsyncStorage.getItem('@MySuperStore:authToken', async (err, val) => {
-  if (val) {
-    await stores.authStore.login(val);
-    console.log('Loaded...');
-  }
-  stores.appStore.loaded = true;
+AsyncStorage.getItem('@MySuperStore:me', async (err, val) => {
+  const me = val ? JSON.parse(val) : null;
+  AsyncStorage.getItem('@MySuperStore:authToken', async (err, val) => {
+    if (val) {
+      if (!me) {
+        await stores.authStore.login(val);
+      } else {
+        stores.authStore.me = me;
+        stores.authStore.login(val).then(() => {});
+      }
+      console.log('Loaded...');
+    }
+    stores.appStore.loaded = true;
+  });
 });
+
 
 
 export default App;
