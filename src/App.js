@@ -7,14 +7,14 @@ import stores from './stores';
 
 import MapScreen from './screens/Map';
 import AccommodationListScreen from './screens/AccommodationListScreen';
+import AccommodationDetails from './screens/AccommodationDetails';
+
 import Login from './screens/Login';
 import SplashScreen from './screens/SplashScreen';
 import FiltersScreen from './screens/FiltersScreen';
 import CreateAccommdationScreen from './screens/CreateAccommodationScreen';
 
 import NavigationDrawer from './components/NavigationDrawer';
-
-
 import DrawerButton from './components/NavigationDrawer/DrawerButton';
 
 import './i18n';
@@ -47,6 +47,8 @@ const scenes = Actions.create((
         <Scene key="home" component={AccommodationListScreen} type="reset" renderLeftButton={() => <DrawerButton />} />
       </Scene>
     </Scene>
+
+    <Scene key="accommodation_details" hideNavBar component={AccommodationDetails} />
   </Scene>
 ));
 

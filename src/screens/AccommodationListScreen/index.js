@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { Actions } from 'react-native-router-flux';
 
 import RightButtonFilters from '../../components/NavBar/RightButtonFilters';
 import AccommodationListScreen from './AccommodationListScreen';
@@ -11,8 +12,9 @@ class AccommodationListScreenContainer extends React.Component {
     return <RightButtonFilters />;
   }
 
-  onAccommodationPress = (accommodation, idx) => {
-    console.log('Accommodation have been pressed', accommodation, idx);
+  onAccommodationPress = (accommodation) => {
+    console.log("Sending Accommodation :", accommodation);
+    Actions.accommodation_details({ accommodation });
   }
 
   render() {

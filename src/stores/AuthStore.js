@@ -61,7 +61,7 @@ class AuthStore {
     }
     try {
       this.loading = true;
-      //console.log("Requesting profile for token...");
+      console.log("Requesting profile for token...");
       this.me = await this.auth0
         .authentication('WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM')
         .tokenInfo(authToken);

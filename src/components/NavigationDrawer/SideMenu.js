@@ -56,17 +56,17 @@ const menuEntries = [
   {
     name: 'Listing',
     route: 'home',
-    icon: 'list-ul'
+    icon: 'list-ul',
   },
   {
     name: 'Map',
     route: 'map',
-    icon: 'map-o'
+    icon: 'map-o',
   },
   {
     name: 'Inbox',
     route: 'inbox',
-    icon: 'envelope-o'
+    icon: 'envelope-o',
   },
   {
     name: 'My listings',
@@ -76,7 +76,7 @@ const menuEntries = [
   {
     name: 'Logout',
     route: 'auth',
-    icon: 'times-circle-o'
+    icon: 'times-circle-o',
   }
 ];
 
