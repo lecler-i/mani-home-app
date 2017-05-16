@@ -40,7 +40,7 @@ const scenes = Actions.create((
     <Scene key="auth" component={Login} hideNavBar type="reset" />
     <Scene key="map" component={MapScreen} />
     <Scene key="filters" component={FiltersScreen} />
-    <Scene key="create-accommodation" component={CreateAccommdationScreen} />
+    <Scene key="create_accommodation" component={CreateAccommdationScreen} />
 
     <Scene key="drawer" component={NavigationDrawer} open={false} type="reset" >
       <Scene key="withNavbar" >

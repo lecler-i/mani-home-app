@@ -19,7 +19,7 @@ class AccommodationListScreenContainer extends React.Component {
 
   render() {
     return (
-      <AccommodationListScreen 
+      <AccommodationListScreen
         data={data}
         onAccommodationPress={this.onAccommodationPress}
       />
@@ -49,7 +49,7 @@ const data = [
     name: 'Suraksha',
     type: 'house',
     contract_type: 'full',
-  }
+  },
 ];
 
 

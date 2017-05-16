@@ -28,7 +28,7 @@ const AccommodationListScreen = inject('appStore')(observer(({ data, onAccommoda
     <AccomodationItem key={idx} accommodation={e} onPress={() => onAccommodationPress(e)} />);
 
   return (
-    <ScrollView style={[styles.container]} keyboardShouldPersistTaps='always'>
+    <ScrollView style={[styles.container]} keyboardShouldPersistTaps="always">
       {accommodations}
     </ScrollView>
   );

@@ -15,7 +15,7 @@ import styles from './styles';
 @inject('appStore') @observer
 class SideMenu extends React.Component {
 
-  _renderRow = (item, id) => 
+  renderRow = (item, id) => 
     <TouchableOpacity
       key={id}
       onPress={() => {
@@ -37,14 +37,14 @@ class SideMenu extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Image source={{ uri: me.picture }} style={styles.profilePicture}/>
-          <View style={{flexDirection: 'column', marginLeft: 8,}}>
+          <Image source={{ uri: me.picture }} style={styles.profilePicture} />
+          <View style={{ flexDirection: 'column', marginLeft: 8 }}>
             <Text style={styles.nameText}>{me.name}</Text>
             <Text>{me.email}</Text>
           </View>
         </View>
         <View style={styles.menuContainer}>
-          {menuEntries.map(this._renderRow)}
+          {menuEntries.map(this.renderRow)}
         </View>
       </View>
     );
@@ -70,14 +70,14 @@ const menuEntries = [
   },
   {
     name: 'My listings',
-    route: 'create-accommodation',
-    icon: 'times-circle-o'
+    route: 'create_accommodation',
+    icon: 'times-circle-o',
   },
   {
     name: 'Logout',
     route: 'auth',
     icon: 'times-circle-o',
-  }
+  },
 ];
 
 export default SideMenu;
