@@ -43,26 +43,21 @@ const CheckBoxFilter = observer(props =>
     }
   />); 
 
-const CreateAccommodationScreen = inject('createAccommodationStore')(observer(({createAccommodationStore}) => {
+const Step2Screen = inject('createAccommodationStore')(observer(({createAccommodationStore}) => {
   return (
       <View style={styles.typeContainer}>
         <CheckBoxFilter
-          title={I18n.t('entire-place')}
-          value={createAccommodationStore.contractType === 'full'}
-          onChange={(val) => createAccommodationStore.setContractType(val ? 'full' : null)}
+          title={I18n.t('appartment')}
+          value={createAccommodationStore.contractType === 'appartment'}
+          onChange={(val) => createAccommodationStore.setContractType(val ? 'appartment' : null)}
         />
         <CheckBoxFilter
-          title={I18n.t('private-room')}
-          value={createAccommodationStore.contractType === 'private'}
-          onChange={(val) => createAccommodationStore.setContractType(val ? 'private' : null)}
-        />
-        <CheckBoxFilter
-          title={I18n.t('shared-room')}
-          value={createAccommodationStore.contractType === 'shared'}
-          onChange={(val) => createAccommodationStore.setContractType(val ? 'shared' : null)}
+          title={I18n.t('house')}
+          value={createAccommodationStore.contractType === 'house'}
+          onChange={(val) => createAccommodationStore.setContractType(val ? 'house' : null)}
         />
       </View>
   );
 }));
 
-export default CreateAccommodationScreen;
+export default Step2Screen;
