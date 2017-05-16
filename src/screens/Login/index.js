@@ -14,11 +14,12 @@ import logo from'../../assets/img/logo.png';
 class Login extends Component {
   constructor(...arg) {
     super(...arg);
-    this.lock = new Auth0Lock({clientId: 'WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM', domain: 'lecler-i.auth0.com'});
+    this.lock = new Auth0Lock({ clientId: 'WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM', domain: 'lecler-i.auth0.com' });
   }
 
   componentWillMount() {
 
+    console.log('LOCK', this.lock);
     this.props.authStore.authToken = null;
     this.lock.show({}, (err, profile, token) => {
       if (err) {

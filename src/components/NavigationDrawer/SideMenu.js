@@ -64,8 +64,8 @@ const menuEntries = [
     icon: 'map-o',
   },
   {
-    name: 'Inbox',
-    route: 'inbox',
+    name: 'Messages',
+    route: 'chat_room_list',
     icon: 'envelope-o',
   },
   {

@@ -16,16 +16,16 @@ class MapScreen extends Component {
     const { data, onMarkerPress, onDetailPress, selectedIdx } = this.props;
 
     console.log('Selected Idx:', selectedIdx);
+    console.log('Accos :', data);
 
     const markers = data.map((e, id) => {
-      console.log('Current one', id);
       return (
         <MapView.Marker
-          key={id}
-          coordinate={e.coordinate}
+          key={e.id}
+          coordinate={{ longitude: e.longitude, latitude: e.latitude }}
           onPress={() => onMarkerPress(e, id)}
         >
-          <PriceMarker amount={e.price} selected={(selectedIdx === id)} /> 
+          <PriceMarker amount={e.rent_price} selected={(selectedIdx === id)} /> 
         </MapView.Marker>
       );
     });

@@ -11,7 +11,7 @@ const AccomodationItem = ({ accommodation, onPress }) =>
       <Image source={{ uri: accommodation.image }} style={styles.thumbnail} />
       <View style={styles.textContainer}>
         <Text style={styles.priceText}>
-          {accommodation.price} INR/Month
+          {accommodation.rent_price} INR/Month
         </Text>
         <Text>
           {I18n.t(accommodation.contract_type)} {I18n.t(accommodation.type)}

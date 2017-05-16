@@ -1,31 +1,34 @@
 import React from 'react';
-import { Text, View, Image, Dimensions, Button } from 'react-native';
+import { Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import I18n from 'react-native-i18n';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './styles';
 
 const window = Dimensions.get('window');
 
-const navBarBar = () =>
+const navBar = () =>
   <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', height: 56, paddingHorizontal: 16, backgroundColor: '#FFFFFFAA' }}>
-    <Icon style={{ fontSize: 28, color: '#FF5A5F' }} name="times" />
+    <TouchableOpacity onPress={Actions.pop}>
+      <Icon style={{ fontSize: 28, color: '#FF5A5F' }} name="times" />
+    </TouchableOpacity>
     <Icon style={{ fontSize: 28, color: '#FF5A5F' }} name="heart-o" />
   </View>;
 
-const AccommodationDetailsScreen = inject('appStore')(observer(({ accommodation, appStore }) => {
+const AccommodationDetailsScreen = inject('appStore')(observer(({ accommodation, appStore, onBackPress }) => {
   //replace by accommodation.user
   const { me } = appStore;
 
   return (
-    <View style={{ flex:1 }}>
+    <View style={{ flex: 1 }}>
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <ParallaxScrollView
           backgroundColor="#FFFFFFAA"
           renderBackground={() => <Image source={{ uri: accommodation.image, width: window.width, height: 350 }}/>}
-          renderFixedHeader={navBarBar}
+          renderFixedHeader={navBar}
           stickyHeaderHeight={56}
           parallaxHeaderHeight={300}
         >

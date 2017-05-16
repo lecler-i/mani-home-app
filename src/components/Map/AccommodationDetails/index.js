@@ -14,11 +14,17 @@ class AccommodationDetails extends React.Component {
   render() {
     const { accommodation, onPress } = this.props;
 
+    console.log(accommodation);
+    let thumbnail = "default";
+    if (accommodation.accommodation_medias) {
+      thumbnail = accommodation.accommodation_medias[0].urls.thumb;
+    } 
+
     return (
       <View style={[styles.container, {marginTop: 0}]}>
         <TouchableOpacity style={{ flex:1 }} onPress={onPress} >
           <View style={styles.detailWrapper}>
-            <Image source={{uri: accommodation.image}} style={styles.thumbnail} />
+            <Image source={{ uri: thumbnail }} style={styles.thumbnail} />
             <View style={styles.mainDetails}>
               <Text 
                 style={styles.nameText}
