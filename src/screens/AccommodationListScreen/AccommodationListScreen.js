@@ -2,13 +2,14 @@ import React from 'react';
 import { Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import I18n from 'react-native-i18n';
+import config from '../../config';
 
 import styles from './styles';
 
 const AccomodationItem = ({ accommodation, onPress }) => 
   <TouchableOpacity onPress={onPress} >
     <View style={styles.accommodationContainer}>
-      <Image source={{ uri: accommodation.image }} style={styles.thumbnail} />
+      <Image source={{ uri: accommodation.thumb }} style={styles.thumbnail} />
       <View style={styles.textContainer}>
         <Text style={styles.priceText}>
           {accommodation.rent_price} INR/Month
@@ -24,8 +25,8 @@ const AccomodationItem = ({ accommodation, onPress }) =>
   </TouchableOpacity>;
 
 const AccommodationListScreen = inject('appStore')(observer(({ data, onAccommodationPress }) => {
-  const accommodations = data.map((e, idx) =>
-    <AccomodationItem key={idx} accommodation={e} onPress={() => onAccommodationPress(e)} />);
+  const accommodations = data.values().map((e, idx) =>
+    <AccomodationItem key={e.id} accommodation={e} onPress={() => onAccommodationPress(e)} />);
 
   return (
     <ScrollView style={[styles.container]} keyboardShouldPersistTaps="always">

@@ -1,9 +1,8 @@
 import appStore from '../stores/AppStore';
-//import config from '../config';
-const API_URL = 'http://192.168.2.3:4000';
+import config from '../config';
 
 const apiFetch = (url, method = 'GET', body = null) => {
-  let data = {
+  const req = {
     method,
     headers: {
       Accept: 'application/json',
@@ -11,20 +10,22 @@ const apiFetch = (url, method = 'GET', body = null) => {
     },
   };
 
-  if (!!body)
-    data.body = JSON.stringify(body);
-  if (!!appStore.authToken)
-    data.headers.Authorization = `Bearer ${appStore.authToken}`;
+  if (body) {
+    req.body = JSON.stringify(body);
+  }
+  if (appStore.authToken) {
+    req.headers.Authorization = `Bearer ${appStore.authToken}`;
+  }
 
-  console.info(`[${method}] ${url}`, data);
+  console.info(`[${method}] ${url}`, req);
 
-  return fetch(`${API_URL}/api${url}`, data)
+  return fetch(`${config.API_URL}/api${url}`, req)
   .then(async (resp) => {
-    const body = await resp.json().catch(() => {});
+    const respBody = await resp.json().catch(() => {});
     if (!resp.ok) {
-      throw body;
+      throw respBody;
     }
-    return body;
+    return respBody;
   });
 };
 
