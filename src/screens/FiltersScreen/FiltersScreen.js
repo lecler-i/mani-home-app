@@ -62,9 +62,11 @@ const FiltersScreen = inject('filtersStore')(observer(({ filtersStore }) => {
           <TouchableOpacity style={{ flex:1 }} onPress={() => filtersStore.toggleAccommodationType('house')}>
             <Text style={[styles.accommodationTypeText, (accommodationTypes.indexOf('house') >= 0 && styles.accommodationTypeSelectedText), {alignSelf: 'flex-end'}]}>HOUSE</Text>
           </TouchableOpacity>
+  
           <Text style={{ fontSize: 22, width: 89, textAlign: 'center', alignSelf: 'center'}}> {(accommodationTypes.length % 2) ? 'or' : 'only'} </Text>
+  
           <TouchableOpacity style={{ flex:1 }} onPress={() => filtersStore.toggleAccommodationType('flat')}>
-              <Text style={[styles.accommodationTypeText, (accommodationTypes.indexOf('flat') >= 0 && styles.accommodationTypeSelectedText)]}>FLAT</Text>
+            <Text style={[styles.accommodationTypeText, (accommodationTypes.indexOf('flat') >= 0 && styles.accommodationTypeSelectedText)]}>FLAT</Text>
           </TouchableOpacity>
        </View>
 

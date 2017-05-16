@@ -69,6 +69,11 @@ const menuEntries = [
     icon: 'envelope-o'
   },
   {
+    name: 'My listings',
+    route: 'create-accommodation',
+    icon: 'times-circle-o'
+  },
+  {
     name: 'Logout',
     route: 'auth',
     icon: 'times-circle-o'

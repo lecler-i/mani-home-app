@@ -7,7 +7,7 @@ import api from '../utils/fetch';
 
 class AuthStore {
   @observable _authToken = null;
-  @observable me = null;
+  @observable _me = null;
   @observable loading = false;
   @observable auth0 = new Auth0('lecler-i.auth0.com');
 
@@ -29,6 +29,19 @@ class AuthStore {
       AsyncStorage.setItem('@MySuperStore:authToken', val);
     }
   }
+
+  @computed
+  get me() {
+    return this._me;
+  }
+  set me(val) {
+    this._me = val;
+    if (!val) {
+      AsyncStorage.removeItem('@MySuperStore:me');
+    } else {
+      AsyncStorage.setItem('@MySuperStore:me', JSON.stringify(this._me));
+    }
+  }    
 
   @action
   logout() {
@@ -52,8 +65,7 @@ class AuthStore {
       this.me = await this.auth0
         .authentication('WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM')
         .tokenInfo(authToken);
-      this.me = profile;
-      console.log('Got profile : ', profile);
+      console.log('Got profile : ', this.me);
       this.authToken = authToken;
       this.loading = false;
       return true;
