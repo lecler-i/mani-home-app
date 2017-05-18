@@ -1,4 +1,4 @@
-import appStore from '../stores/AppStore';
+import authStore from '../stores/AuthStore';
 import config from '../config';
 
 const apiFetch = (url, method = 'GET', body = null) => {
@@ -13,17 +13,17 @@ const apiFetch = (url, method = 'GET', body = null) => {
   if (body) {
     req.body = JSON.stringify(body);
   }
-  if (appStore.authToken) {
-    req.headers.Authorization = `Bearer ${appStore.authToken}`;
+  if (authStore.authToken) {
+    req.headers.Authorization = `Bearer ${authStore.authToken}`;
   }
 
-  console.info(`[${method}] ${url}`, req);
+  console.info(`Sending [${method}] ${url}`, req);
 
   return fetch(`${config.API_URL}/api${url}`, req)
   .then(async (resp) => {
     const respBody = await resp.json().catch(() => {});
     if (!resp.ok) {
-      throw respBody;
+      throw resp;
     }
     return respBody;
   });

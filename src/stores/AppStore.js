@@ -10,6 +10,7 @@ class AppStore {
   get me() {
     return authStore.me;
   }
+
 }
 
 const appStore = new AppStore();

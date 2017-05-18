@@ -18,7 +18,8 @@ class MapScreen extends Component {
     console.log('Selected Idx:', selectedIdx);
     console.log('Accos :', data);
 
-    const markers = data.map((e, id) => {
+    const markers = data.values().map((e, id) => {
+      console.log('Acc ici :', e);
       return (
         <MapView.Marker
           key={e.id}
@@ -50,7 +51,7 @@ class MapScreen extends Component {
             {markers}
           </MapView>
         </View>
-        <AccommodationDetails accommodation={data[selectedIdx]} onPress={onDetailPress}/>
+        <AccommodationDetails accommodation={data.get(selectedIdx)} onPress={onDetailPress}/>
      </View>
     );
   }

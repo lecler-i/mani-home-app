@@ -11,18 +11,22 @@ const ChatRoomItem = ({ chatroom, onPress }) =>
       <Image></Image>
       <View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 280 }}>
-          <Text style={{ marginLeft: 15, fontWeight: '600' }}>x.first_name x.last_name</Text>
-          <Text style={{ color: '#333', fontSize: 10 }}>x.time</Text>
+          <Text style={{ marginLeft: 15, fontWeight: '600' }}>{chatroom.withUser.name} {chatroom.withUser.mail}</Text>
+          {chatroom.last_message &&
+            <Text style={{ color: '#333', fontSize: 10 }}>{chatroom.last_message.inserted_at}</Text>
+          }
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text style={{ fontWeight: '400', color: '#333' }}>x.message</Text>
+          {chatroom.last_message &&
+            <Text style={{ fontWeight: '400', color: '#333' }}>{chatroom.last_message.text}</Text>
+          }
         </View>
       </View>
     </View>
   </TouchableOpacity>;
 
 const ChatRoomListScreen = inject('appStore')(observer(({ data, onChatRoomPress }) => {
-  const chatrooms = data.map(chatroom =>
+  const chatrooms = data.values().map(chatroom =>
     <ChatRoomItem key={chatroom.id} chatroom={chatroom} onPress={() => onChatRoomPress(chatroom)} />);
 
   return (

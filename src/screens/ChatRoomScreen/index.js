@@ -1,48 +1,66 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Actions } from 'react-native-router-flux';
+import { GiftedChat } from 'react-native-gifted-chat';
 
 import RightButtonFilters from '../../components/NavBar/RightButtonFilters';
-import MapScreen from './MapScreen';
+import ChatRoomScreen from './ChatRoomScreen';
 
-@inject('appStore', 'accommodationsStore') @observer
-class MapScreenContainer extends Component {
-
-  static renderRightButton() {
-    return <RightButtonFilters />;
-  }
+@inject('appStore', 'chatRoomsStore') @observer
+class ChatRoomScreenContainer extends Component {
 
   constructor(props) {
     super(props);
+  
     this.state = {
-      selectedIdx: 0,
+      messages: this.generateGiftedMessages(this.chatroom.messages),
     };
   }
 
-  onMarkerPress = (accommodation, idx) => {
-    this.setState({ selectedIdx: idx });
+  onSend = (messages = []) => {
+    console.log('SENDING :', this.chatroom, messages);
+    
+    messages.forEach(this.chatroom.sendMessage);
   }
 
-  onDetailPress = () => {
-    const { accommodations } = this.props.accommodationsStore;
+  get chatroom() {
+    const { chatroomId, chatRoomsStore } = this.props;
 
-    Actions.accommodation_details({ accommodation: accommodations[this.state.selectedIdx] });
+    return chatRoomsStore.chatrooms.get(chatroomId);
+  }
+
+  generateGiftedMessages = (messages) => (
+    messages.map(m => ({
+      _id: m.id,
+      text: m.text,
+      user: {
+        _id: m.user.id,
+        name: m.user.name,
+        avatar: m.user.avatar,
+      },
+      createdAt: m.inserted_at,
+    }))
+  )
+
+  componentWillReact() {
+    console.log("I will re-render, since the todo has changed!");
+    const messages = this.generateGiftedMessages(this.chatroom.messages);
+    GiftedChat.append([], messages);
+    this.setState({ messages });
   }
 
   render() {
-    const { accommodations, loading } = this.props.accommodationsStore;
+    const messages = this.generateGiftedMessages(this.chatroom.messages);
 
-    console.log("LALALA : ", accommodations)
+    console.log('Messages ::', messages, this.state.messages);
 
     return (
-      <MapScreen
-        data={accommodations}
-        onMarkerPress={this.onMarkerPress}
-        onDetailPress={this.onDetailPress}
-        selectedIdx={this.state.selectedIdx}
+      <ChatRoomScreen
+        messages={this.state.messages}
+        onSend={this.onSend}
       />
     );
   }
 }
 
-export default MapScreenContainer;
+export default ChatRoomScreenContainer;

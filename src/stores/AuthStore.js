@@ -5,6 +5,18 @@ import Auth0 from 'react-native-auth0';
 
 import api from '../utils/fetch';
 
+import { types } from 'mobx-state-tree';
+
+export const User = types.model('User', {
+  id: types.identifier(types.number),
+  surname: types.string,
+  name: types.string,
+  mail: types.string,
+  get _id() {
+    return this.id;
+  },
+});
+
 class AuthStore {
   @observable _authToken = null;
   @observable _me = null;
@@ -65,7 +77,7 @@ class AuthStore {
       this.me = await this.auth0
         .authentication('WtBYagql92oaE6fhJ1r6jeJFzmMiH9cM')
         .tokenInfo(authToken);
-      console.log('Got profile : ', this.me);
+      console.log('Got profile : ', this.me, authToken);
       this.authToken = authToken;
       this.loading = false;
       return true;

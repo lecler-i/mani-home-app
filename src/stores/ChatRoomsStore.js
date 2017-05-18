@@ -1,53 +1,74 @@
-import { observable, action, computed } from 'mobx';
-
+import { types } from 'mobx-state-tree';
 import fetchApi from '../utils/fetch';
+import appStore from './AppStore';
 
-class ChatRoomsStore {
-  @observable chatrooms = [];
-  @observable isLoading = false;
+import { User } from './AuthStore';
 
-  @action
-  async fetch() {
-    this.isLoading = true;
-    const { data } = await fetchApi('/chatrooms');
-    this.chatrooms = data;
-    this.isLoading = false;
-  }
-}
-
-const chatRoomsStore = new ChatRoomsStore();
-
-chatRoomsStore.chatrooms = [
-  {
-    id: 42,
-    users: [
-      {
-        id: 1,
-        name: 'Thomas LECLERCQ',
-        picture: 'https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/1896846_225866990917076_9177983665082924448_n.jpg?oh=508244fcefd6f1c814e3fcedc5c2c2c1&oe=597C99E6',
-      },
-    ],
-    messages: [
-      {
-        id: 1,
-        createdAt: new Date(),
-        text: 'POREMIER MESSAGE',
-      },
-      {
-        id: 2,
-        createdAt: new Date(),
-        text: 'LALA MESSAGE',
-      },
-      {
-        id: 3,
-        createdAt: new Date(),
-        text: '3ieme message',
-      },
-    ],
+export const Message = types.model('Message', {
+  id: types.identifier(types.number),
+  text: types.string,
+  inserted_at: types.string,
+  user: types.maybe(User),
+  get _id() {
+    return this.id;
   },
-];
+  get createdAt() {
+    return this.inserted_at;
+  },
+});
 
-// accommodationsStore.fetch();
+export const ChatRoom = types.model('ChatRoom', {
+  id: types.identifier(types.number),
+  messages: types.optional(types.array(Message), []),
+  last_message: types.maybe(Message),
+  users: types.array(User),
+  get withUser() {
+    const users = this.users.filter(user =>
+      user.id !== appStore.me.id,
+    );
+    return users[0];
+  },
+}, {
+  sendMessage({ text }) {
+    const body = {
+      message: {
+        text,
+        user: 2, //appStore.me.id,
+      },
+    };
+    return fetchApi(`/chats/${this.id}/messages`, 'POST', body).then((json) => {
+      this.addMessage(json.data);
+    });
+  },
+  addMessage(message) {
+    this.messages.push(message);
+  },
+});
 
+const ChatRoomsStore = types.model('ChatRoomsStore', {
+  chatrooms: types.map(ChatRoom),
+  isLoading: true,
+}, {
+  loadChatRooms() {
+    fetchApi('/chats').then((json) => {
+      console.log('Received chats : ', json);
+      this.updateChatrooms(json.data);
+      this.markLoading(false);
+    })
+    .catch((err) => {
+      console.error('Failed to load Chatrooms ', err);
+    });
+  },
+  markLoading(loading) {
+    this.isLoading = loading;
+  },
+  updateChatrooms(data) {
+    data.forEach((chatroom) => {
+      this.chatrooms.put(ChatRoom.create(chatroom));
+    });
+  }
+});
 
-export default chatRoomsStore;
+const chatRoomStore = ChatRoomsStore.create({ chatrooms: {} });
+
+export default chatRoomStore;

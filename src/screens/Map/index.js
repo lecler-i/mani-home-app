@@ -15,7 +15,7 @@ class MapScreenContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIdx: 0,
+      selectedIdx: 3,
     };
   }
 
@@ -25,14 +25,11 @@ class MapScreenContainer extends Component {
 
   onDetailPress = () => {
     const { accommodations } = this.props.accommodationsStore;
-
-    Actions.accommodation_details({ accommodation: accommodations[this.state.selectedIdx] });
+    Actions.accommodation_details({ accommodation: accommodations.get(this.state.selectedIdx) });
   }
 
   render() {
     const { accommodations, loading } = this.props.accommodationsStore;
-
-    console.log("LALALA : ", accommodations)
 
     return (
       <MapScreen

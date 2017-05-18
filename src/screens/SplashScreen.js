@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-@inject('appStore', 'authStore') @observer
+@inject('appStore', 'authStore', 'accommodationsStore', 'chatRoomsStore') @observer
 class SplashScreen extends Component {
   
   componentWillMount() {
@@ -29,13 +29,17 @@ class SplashScreen extends Component {
 
   checkLoadingStatus = () => {
     const { loaded, me } = this.props.appStore;
-    const { loading } = this.props.authStore;
+    const { loading, authToken } = this.props.authStore;
 
     console.log('App Loaded : ', loaded);
     console.log('Auth Loading: ', loading);
-    console.log('Me: ', me);
+    console.log('Me: ', me, authToken);
 
-    if (loaded && !!me) Actions.drawer();
+    if (loaded && !!me && authToken) {
+      this.props.accommodationsStore.loadAccommodations();
+      this.props.chatRoomsStore.loadChatRooms();
+      Actions.drawer();
+    }
     else if (loaded && !this.props.authStore.loading) Actions.auth();
   }
 

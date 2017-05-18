@@ -8,6 +8,7 @@ import styles from './styles';
 
 import CreateAccommodationScreen from './CreateAccommodationScreen';
 import Step2Screen from './Step2Screen';
+import MainInfosStep from './MainInfosStep';
 
 @inject('appStore', 'createAccommodationStore') @observer
 class CreateAccommodationScreenContainer extends Component {
@@ -15,38 +16,52 @@ class CreateAccommodationScreenContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
+      step: props.createAccommodationStore.currentStep,
+      validStep: false,
     };
   }
 
-  nextStep = () => {
-    this.setState({ step: this.state.step + 1 })
-  }
-
   onBack() {
-    console.log("GOOOING BACK MOFO");
     if (this.state.step === 0) {
       Actions.pop();
     } else {
-      this.setState({ step: this.state.step - 1 })
-    } 
+      this.setState({ step: this.state.step - 1 });
+    }
+  }
+
+  nextStep = () => {
+    const { currentStep } = this.props.createAccommodationStore;
+    console.log("Current step :", currentStep);
+    if (currentStep > this.state.step)
+      this.setState({ step: this.state.step + 1 });
   }
 
   render() {
-    let currentStepScreen = null;
-
-    if (this.state.step === 1)
-      currentStepScreen = <CreateAccommodationScreen />;
-    else if (this.state.step === 2)
-      currentStepScreen = <Step2Screen />;
+    const { step } = this.state;
+    const accommodation = this.props.createAccommodationStore;
+    const stepProps = {
+      accommodation,
+      step: this.state.step,
+    };
 
     return (
       <ScrollView style={[styles.container]}>
-        {currentStepScreen}
+        {step === 1 &&
+          <CreateAccommodationScreen {...stepProps} changeContractType={v => accommodation.changeContractType(v)} />
+        }{step === 2 &&
+          <Step2Screen {...stepProps} changeType={v => accommodation.changeType(v)} />
+        }{step === 3 &&
+          <MainInfosStep
+            {...stepProps}
+            changeRoomAvailable={v => accommodation.changeRoomAvailable(v)}
+            changeRentPrice={v => accommodation.changeRentPrice(v)}
+            changeName={v => accommodation.changeName(v)}
+          />
+        }
         <TouchableOpacity onPress={this.nextStep} >
-        <View style={styles.nextButton}>
-          <Text style={styles.nextButtonText} >Next</Text>
-        </View>
+          <View style={styles.nextButton}>
+            <Text style={styles.nextButtonText} >Next</Text>
+          </View>
         </TouchableOpacity>
       </ScrollView>
     );

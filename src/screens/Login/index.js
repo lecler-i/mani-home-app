@@ -18,15 +18,13 @@ class Login extends Component {
   }
 
   componentWillMount() {
-
-    console.log('LOCK', this.lock);
     this.props.authStore.authToken = null;
     this.lock.show({}, (err, profile, token) => {
       if (err) {
         console.log(err);
         return;
       }
-      console.log('Logged in with Auth0!');
+      console.log('Logged in with Auth0!', profile, token);
       this.props.authStore.login(token.idToken, profile);
       Actions.splashscreen();
     });

@@ -8,7 +8,8 @@ import ChatRoomListScreen from './ChatRoomListScreen';
 class ChatRoomListScreenContainer extends React.Component {
   
   onChatRoomPress = (chatroom) => {
-    Actions.chat_room({ chatroom });
+    console.log('Go to ', chatroom);
+    Actions.chat_room({ chatroomId: chatroom.id });
   }
 
   render() {

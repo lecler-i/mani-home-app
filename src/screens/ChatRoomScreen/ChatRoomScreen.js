@@ -6,17 +6,15 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 import styles from './styles';
 
-const ChatRoomScreen = inject('appStore')(observer(({ appStore, room }) => ({
-  return (
-    <GiftedChat
-      messages={this.state.messages}
-      onSend={this.onSend}
-      user={{
-        _id: appStore.me._id,
-      }}
-    />
-  );
-
-})));
+const ChatRoomScreen = inject('appStore')(observer(({ messages, onSend }) => (
+  <GiftedChat
+    messages={messages}
+    onSend={onSend}
+    user={{
+      _id: 2,
+    }}
+    keyboardShouldPersistTaps={'never'}
+  />
+)));
 
 export default ChatRoomScreen;

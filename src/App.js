@@ -14,6 +14,7 @@ import SplashScreen from './screens/SplashScreen';
 import FiltersScreen from './screens/FiltersScreen';
 import CreateAccommdationScreen from './screens/CreateAccommodationScreen';
 import ChatRoomListScreen from './screens/ChatRoomListScreen';
+import ChatRoomScreen from './screens/ChatRoomScreen';
 
 import NavigationDrawer from './components/NavigationDrawer';
 import DrawerButton from './components/NavigationDrawer/DrawerButton';
@@ -42,11 +43,8 @@ const scenes = Actions.create((
     <Scene key="map" component={MapScreen} />
     <Scene key="filters" component={FiltersScreen} />
     <Scene key="create_accommodation" component={CreateAccommdationScreen} />
-    <Scene key="chat_room_list" component={ChatRoomListScreen} >
-      <div>
-
-      </div>
-    </Scene>
+    <Scene key="chat_room_list" component={ChatRoomListScreen} />
+    <Scene key="chat_room" component={ChatRoomScreen} />      
 
 
     <Scene key="drawer" component={NavigationDrawer} open={false} type="reset" >
